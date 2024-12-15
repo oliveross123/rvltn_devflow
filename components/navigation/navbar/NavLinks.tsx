@@ -1,16 +1,17 @@
 "use client";
 
+import { SheetClose } from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
-import { usePathname } from "next/navigation";
-import React from "react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { SheetClose } from "@/components/ui/sheet";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
   const pathname = usePathname();
   const userId = 1;
+
   return (
     <>
       {sidebarLinks.map((item) => {
@@ -29,8 +30,8 @@ const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
             key={item.label}
             className={cn(
               isActive
-                ? "primary-gradient rounded-lg text-lgiht-900"
-                : "text-dark30_light900",
+                ? "primary-gradient rounded-lg text-light-900"
+                : "text-dark300_light900",
               "flex items-center justify-start gap-4 bg-transparent p-4"
             )}
           >
@@ -57,7 +58,7 @@ const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
             {LinkComponent}
           </SheetClose>
         ) : (
-          <React.Fragment key={item.route}></React.Fragment>
+          <React.Fragment key={item.route}>{LinkComponent}</React.Fragment>
         );
       })}
     </>
